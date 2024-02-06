@@ -1,0 +1,22 @@
+@import "../../../css/common";
+
+.Button {
+  display: flex;
+  @include create-text($side_text, 20px, 500, $letterSpacing: 0.16px);
+  align-items: center;
+  width: fit-content;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all .2s ease;
+
+  &:hover {
+    color: $primaryHover;
+  }
+
+
+  &Disabled {
+    @include create-text($text, 16px, 500, $letterSpacing: 0.16px);
+    background: $red;
+    box-shadow: $logOutButton;
+  }
+}

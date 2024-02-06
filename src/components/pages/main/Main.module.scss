@@ -1,0 +1,32 @@
+@import "src/css/common";
+
+.Container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.Main {
+  display: flex;
+  flex-direction: column;
+  height: inherit;
+  flex: 1 1 auto;
+  padding: 60px;
+}
+
+
+.Table {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: fit-content;
+  background: $content;
+  //padding: 10px;
+  border-radius: 7px;
+}
+
+.Body {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}

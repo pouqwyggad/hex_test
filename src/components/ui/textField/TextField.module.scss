@@ -1,0 +1,51 @@
+@import '../../../css/common';
+
+.FormInput {
+  width: 100%;
+  position: relative;
+}
+
+.Input {
+  font-size: 18px;
+  position: relative;
+  color: $text;
+  padding-left: 20px;
+  width: 100%;
+  height: 45px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 2px solid transparent;
+  transition: all .2s ease;
+  @include create-text($text, 16px, 400, $letterSpacing: 0.16px);
+
+  &:focus {
+    border-color: $primary;
+    background: none;
+  }
+
+  &Active {
+    border-color: $primary;
+  }
+}
+
+.Label {
+  filter: none;
+  letter-spacing: 1px;
+  pointer-events: none;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 30px;
+  color: $divider;
+  position: absolute;
+  background: none;
+  padding: 0 5px;
+  transition: all .3s ease;
+}
+
+
+.Input:focus + label,
+.Input:not(:placeholder-shown) + label {
+  top: 0;
+  color: $primary;
+  background: $content;
+}
