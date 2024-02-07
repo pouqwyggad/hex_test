@@ -4,3 +4,4 @@ npm i - установите зависимости
 
 ### `npm run build` - build
 
+https://hex-test-delta.vercel.app/
