@@ -2,29 +2,15 @@ import React, {
     FC, PropsWithChildren,
 } from 'react';
 import {motion} from "framer-motion";
-import classes from './Pagination.module.scss';
 import {PagArrowLeftIcon} from '../../icons/PagArrowLeftIcon';
 import {PagArrowRightIcon} from '../../icons/PagArrowRightIcon';
-
-
-export const paginationMotion = {
-    initial: {
-        opacity: 0,
-        y: 30,
-    },
-    animate: {
-        opacity: 1,
-        y: 0,
-    },
-    exit: {
-        opacity: 0,
-        y: 30,
-    },
-};
+import {paginationMotion} from "../../../motions/paginationMotion";
+import {createArrayButtons} from "../../../utils/createArrayButtons";
+import classes from './Pagination.module.scss';
 
 interface PaginationProps {
-    onClick: (number: number) => void;
     clickHandler: (type: number) => void;
+    onClick: (number: number) => void;
     separator: string;
     current: number;
     total: number;
@@ -42,11 +28,6 @@ export const Pagination: FC<PropsWithChildren<PaginationProps>> = (
     const showAfterFirst = current < 5;
     const showBeforeLast = current > total - 4;
 
-    const createArrayButtons = (quantity: number, startNumber: number) => {
-        const newArr = [...Array.from({length: quantity})];
-        return newArr.map((n, i) => startNumber + i);
-    };
-
     const buttonsToRender = total > 8
         ? [
             1,
@@ -63,8 +44,8 @@ export const Pagination: FC<PropsWithChildren<PaginationProps>> = (
 
     return (
         <motion.div
-            variants={paginationMotion}
             className={classes.PaginationWrapper}
+            variants={paginationMotion}
             initial="initial"
             animate="animate"
             exit="exit"

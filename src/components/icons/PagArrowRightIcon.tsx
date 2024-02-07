@@ -1,4 +1,4 @@
-import React, { FC, PropsWithChildren } from 'react';
+import React, {FC, PropsWithChildren} from 'react';
 
 interface PagArrowRightIconProps {
     className?: string
@@ -6,7 +6,10 @@ interface PagArrowRightIconProps {
 }
 
 export const PagArrowRightIcon: FC<PropsWithChildren<PagArrowRightIconProps>> = (
-    { className, onClick },
+    {
+        className,
+        onClick
+    },
 ) => (
     <button
         type="button"
@@ -20,7 +23,7 @@ export const PagArrowRightIcon: FC<PropsWithChildren<PagArrowRightIconProps>> = 
             viewBox="0 0 6 9"
             fill="none"
         >
-            <path d="M1 7.93311L5 4.50129L1 1.00004" stroke="white" />
+            <path d="M1 7.93311L5 4.50129L1 1.00004" stroke="white"/>
         </svg>
     </button>
 );

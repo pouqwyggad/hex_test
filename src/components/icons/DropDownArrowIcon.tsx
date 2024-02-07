@@ -1,5 +1,5 @@
 import React, { FC, PropsWithChildren } from 'react';
-import { motion } from "framer-motion";
+import { motion } from 'framer-motion';
 
 interface DropDownArrowIconProps {
     className?: string;

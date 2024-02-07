@@ -1,9 +1,8 @@
-import classes from './Form.module.scss'
-import {FC, PropsWithChildren} from "react"
-import {Link, Outlet} from "@tanstack/react-router";
+import classes from './Form.module.scss';
+import {FC, PropsWithChildren} from 'react';
+import {Link, Outlet} from '@tanstack/react-router';
 
 interface FormProps {
-
 }
 
 export const Form: FC<PropsWithChildren<FormProps>> = ({}) => {
@@ -14,9 +13,7 @@ export const Form: FC<PropsWithChildren<FormProps>> = ({}) => {
 
                     <Link
                         to={'/auth/login'}
-                        activeProps={{
-                            className: classes.ActiveLink
-                        }}
+                        activeProps={{className: classes.ActiveLink}}
                         className={classes.Link}
                     >
                         Вход
@@ -24,9 +21,7 @@ export const Form: FC<PropsWithChildren<FormProps>> = ({}) => {
 
                     <Link
                         to={'/auth/registration'}
-                        activeProps={{
-                            className: classes.ActiveLink
-                        }}
+                        activeProps={{className: classes.ActiveLink}}
                         className={classes.Link}
                     >
                         Регистрация
@@ -34,9 +29,9 @@ export const Form: FC<PropsWithChildren<FormProps>> = ({}) => {
 
                 </div>
 
-                <Outlet />
+                <Outlet/>
 
             </div>
         </div>
-    )
-}
+    );
+};

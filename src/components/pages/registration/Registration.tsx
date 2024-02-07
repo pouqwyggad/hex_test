@@ -6,12 +6,11 @@ import {pageMotion} from "../../../motions/pageMotion";
 import {motion} from "framer-motion";
 
 interface RegistrationProps {
-
 }
 
 export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
-
     const [user, setUser] = useState<Record<string, string>>({username: "", password: ""});
+    const [error, setError] = useState(false);
 
     const changeUserValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -19,8 +18,7 @@ export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
         setUser((prevState) => ({
             ...prevState,
             [name]: value,
-        }))
-
+        }));
     };
 
     const handleRegister = async () => {
@@ -30,12 +28,14 @@ export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
             }
-        })
+        });
+
+        if (!response.ok) {
+            setError(true);
+            return;
+        }
 
         const data = await response.json();
-// обработать ошибку
-        console.log(response)
-        console.log(data)
     }
 
     return (
@@ -53,6 +53,7 @@ export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
                 user={user.username}
                 name="username"
                 text="Username"
+                error={error}
             />
 
             <TextField
@@ -60,6 +61,7 @@ export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
                 user={user.password}
                 name="password"
                 text="Password"
+                error={error}
             />
 
             <Button

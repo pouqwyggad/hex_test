@@ -1,7 +1,7 @@
-export const pageMotion = {
+export const paginationMotion = {
     initial: {
         opacity: 0,
-        y: 40,
+        y: 30,
     },
     animate: {
         opacity: 1,
@@ -9,6 +9,6 @@ export const pageMotion = {
     },
     exit: {
         opacity: 0,
-        y: 40,
-    }
-}
+        y: 30,
+    },
+};

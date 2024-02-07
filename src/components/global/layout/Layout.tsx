@@ -1,14 +1,12 @@
-import classes from './Layout.module.scss'
-import {FC, PropsWithChildren, useEffect} from "react"
-import {Header} from "../../ui/header/Header";
-import {useNavigate} from "@tanstack/react-router";
+import {FC, PropsWithChildren, useEffect} from 'react';
+import {useNavigate} from '@tanstack/react-router';
+import classes from './Layout.module.scss';
 
 interface LayoutProps {
-
 }
 
 export const Layout: FC<PropsWithChildren<LayoutProps>> = ({children}) => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
 
     useEffect(() => {
         if ((localStorage.getItem("token") === "undefined" || !localStorage.getItem("token")) && !window.location.href.includes('auth')) {
@@ -20,5 +18,5 @@ export const Layout: FC<PropsWithChildren<LayoutProps>> = ({children}) => {
         <div className={classes.Layout}>
             {children}
         </div>
-    )
-}
+    );
+};

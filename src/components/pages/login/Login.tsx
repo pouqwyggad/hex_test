@@ -4,15 +4,15 @@ import {TextField} from "../../ui/textField/TextField";
 import {Button} from "../../ui/button/Button";
 import {motion} from "framer-motion";
 import {pageMotion} from "../../../motions/pageMotion";
-import {Link, useNavigate} from "@tanstack/react-router";
+import {useNavigate} from "@tanstack/react-router";
 
 interface LoginProps {
 
 }
 
 export const Login: FC<PropsWithChildren<LoginProps>> = ({}) => {
-
     const navigate = useNavigate({from: "/auth/login"});
+    const [error, setError] = useState(false);
 
     const [user, setUser] = useState<Record<string, string>>({username: "", password: ""});
 
@@ -36,26 +36,27 @@ export const Login: FC<PropsWithChildren<LoginProps>> = ({}) => {
             body: JSON.stringify(user)
         })
 
+        if (!response.ok) {
+            setError(true);
+            return;
+        }
+
         const data = await response.json();
-// обработать ошибку
-        console.log(response)
 
         localStorage.setItem("token", data.access_token);
         localStorage.setItem("user", user.username);
 
-        console.log(data)
-
-         navigate({to: "/", replace: true})
+        navigate({to: "/", replace: true})
     }
 
     return (
         <motion.div
-            key={1}
+            className={classes.Login}
+            variants={pageMotion}
             initial={'initial'}
             animate={'animate'}
             exit={'exit'}
-            variants={pageMotion}
-            className={classes.Login}
+            key={1}
         >
 
             <TextField
@@ -63,6 +64,7 @@ export const Login: FC<PropsWithChildren<LoginProps>> = ({}) => {
                 user={user.username}
                 name="username"
                 text="Username"
+                error={error}
             />
 
             <TextField
@@ -70,6 +72,7 @@ export const Login: FC<PropsWithChildren<LoginProps>> = ({}) => {
                 user={user.password}
                 name="password"
                 text="Password"
+                error={error}
             />
 
             <Button

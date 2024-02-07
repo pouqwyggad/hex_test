@@ -6,25 +6,10 @@ import {ListItem} from "../../ui/listItem/ListItem";
 import {Pagination} from "../../ui/Pagination/Pagination";
 import {AddLink} from "../../ui/addLink/AddLink";
 import {ListHeader} from "../../ui/listHeader/ListHeader";
+import {Filters, Table} from "../../../interfaces/global";
+import {API_URL, ROWS_PER_PAGE} from "../../../constants/constants";
 
 interface MainProps {
-
-}
-
-export interface Table {
-    id: number
-    short: string
-    target: string
-    counter: string
-}
-
-const ROWS_PER_PAGE = 10;
-
-
-export interface Filters {
-    target: "asc_target" | "desc_target"
-    short: "asc_short" | "desc_short"
-    counter: "asc_counter" | "desc_counter"
 }
 
 export const Main: FC<PropsWithChildren<MainProps>> = ({}) => {
@@ -42,7 +27,7 @@ export const Main: FC<PropsWithChildren<MainProps>> = ({}) => {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch(`https://front-test.hex.team/api/statistics?order=${filters.short}&order=${filters.target}&order=${filters.counter}&offset=${step}&limit=${ROWS_PER_PAGE}`, {
+            const response = await fetch(`${API_URL}/statistics?order=${filters.short}&order=${filters.target}&order=${filters.counter}&offset=${step}&limit=${ROWS_PER_PAGE}`, {
                 method: "GET",
                 headers: {
                     'Accept': 'application/json',

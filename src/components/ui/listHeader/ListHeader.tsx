@@ -1,7 +1,8 @@
 import classes from './ListHeader.module.scss'
 import React, {FC, PropsWithChildren} from "react"
 import {DropDownArrowIcon} from "../../icons/DropDownArrowIcon";
-import type {Filters} from "../../pages/main/Main";
+import type {Filters} from "../../../interfaces/global";
+
 
 interface ListHeaderProps {
     changeFilters: React.Dispatch<React.SetStateAction<Filters>>
