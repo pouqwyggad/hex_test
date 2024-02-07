@@ -1,20 +1,22 @@
-import classes from './Login.module.scss'
-import React, {FC, PropsWithChildren, useState} from "react"
-import {TextField} from "../../ui/textField/TextField";
-import {Button} from "../../ui/button/Button";
-import {motion} from "framer-motion";
-import {pageMotion} from "../../../motions/pageMotion";
-import {useNavigate} from "@tanstack/react-router";
+import React, {FC, PropsWithChildren, useState} from 'react';
+import type {User} from '../../../interfaces/global';
+import {TextField} from '../../ui/TextField/TextField';
+import {Button} from '../../ui/Button/Button';
+import {useNavigate} from '@tanstack/react-router';
+import {login} from '../../../api/api';
+import {pageMotion} from '../../../motions/pageMotion';
+import {motion} from 'framer-motion';
+import classes from './Login.module.scss';
 
 interface LoginProps {
 
 }
 
 export const Login: FC<PropsWithChildren<LoginProps>> = ({}) => {
-    const navigate = useNavigate({from: "/auth/login"});
+    const navigate = useNavigate({from: "/auth/Login"});
     const [error, setError] = useState(false);
 
-    const [user, setUser] = useState<Record<string, string>>({username: "", password: ""});
+    const [user, setUser] = useState<User>({username: "", password: ""});
 
     const changeUserValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
         const {name, value} = e.target;
@@ -27,27 +29,18 @@ export const Login: FC<PropsWithChildren<LoginProps>> = ({}) => {
     };
 
     const handleLogin = async () => {
-        const response = await fetch(`https://front-test.hex.team/api/login`, {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(user)
-        })
+        try {
+            const data = await login(user);
 
-        if (!response.ok) {
+            localStorage.setItem("token", data.access_token);
+            localStorage.setItem("user", user.username);
+
+            navigate({ to: "/", replace: true });
+        } catch (error) {
+            console.error(`Произошла ошибка при входе: ${error}`);
             setError(true);
-            return;
         }
-
-        const data = await response.json();
-
-        localStorage.setItem("token", data.access_token);
-        localStorage.setItem("user", user.username);
-
-        navigate({to: "/", replace: true})
-    }
+    };
 
     return (
         <motion.div

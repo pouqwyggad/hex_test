@@ -1,5 +1,5 @@
-import classes from './TextField.module.scss'
-import React, {FC, PropsWithChildren} from "react"
+import React, {FC, PropsWithChildren} from 'react';
+import classes from './TextField.module.scss';
 
 interface TextFieldProps {
     onChange: (e: React.ChangeEvent<HTMLInputElement>) => void

@@ -10,3 +10,13 @@ export interface Table {
     target: string
     counter: string
 }
+
+export interface StatisticsResponse {
+    data: Table[];
+    total: number;
+}
+
+export interface User {
+    username: string
+    password: string
+}

@@ -1,7 +1,7 @@
-import classes from './ListHeader.module.scss'
-import React, {FC, PropsWithChildren} from "react"
-import {DropDownArrowIcon} from "../../icons/DropDownArrowIcon";
-import type {Filters} from "../../../interfaces/global";
+import React, {FC, PropsWithChildren} from 'react';
+import type {Filters} from '../../../interfaces/global';
+import {DropDownArrowIcon} from '../../icons/DropDownArrowIcon';
+import classes from './ListHeader.module.scss';
 
 
 interface ListHeaderProps {

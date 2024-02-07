@@ -1,19 +1,19 @@
 import React, {
     FC, PropsWithChildren,
 } from 'react';
-import {motion} from "framer-motion";
 import {PagArrowLeftIcon} from '../../icons/PagArrowLeftIcon';
 import {PagArrowRightIcon} from '../../icons/PagArrowRightIcon';
-import {paginationMotion} from "../../../motions/paginationMotion";
-import {createArrayButtons} from "../../../utils/createArrayButtons";
+import {createArrayButtons} from '../../../utils/createArrayButtons';
+import {motion} from 'framer-motion';
+import {paginationMotion} from '../../../motions/paginationMotion';
 import classes from './Pagination.module.scss';
 
 interface PaginationProps {
-    clickHandler: (type: number) => void;
-    onClick: (number: number) => void;
-    separator: string;
-    current: number;
-    total: number;
+    clickHandler: (type: number) => void
+    onClick: (number: number) => void
+    separator: string
+    current: number
+    total: number
 }
 
 export const Pagination: FC<PropsWithChildren<PaginationProps>> = (

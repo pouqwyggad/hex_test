@@ -3,10 +3,10 @@ import {
 } from '@tanstack/react-router';
 import React from 'react';
 import {Layout} from "../components/global/layout/Layout";
-import {Main} from "../components/pages/main/Main";
+import {Main} from "../components/pages/Main/Main";
 import {Form} from "../components/global/form/Form";
-import {Login} from "../components/pages/login/Login";
-import {Registration} from "../components/pages/registration/Registration";
+import {Login} from "../components/pages/Login/Login";
+import {Registration} from "../components/pages/Registration/Registration";
 
 const rootRoute = new RootRoute({
     component: () => (

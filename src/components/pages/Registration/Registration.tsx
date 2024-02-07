@@ -1,15 +1,19 @@
-import classes from './Registration.module.scss'
-import React, {FC, PropsWithChildren, useState} from "react"
-import {TextField} from "../../ui/textField/TextField";
-import {Button} from "../../ui/button/Button";
-import {pageMotion} from "../../../motions/pageMotion";
-import {motion} from "framer-motion";
+import React, {FC, PropsWithChildren, useState} from 'react';
+import type {User} from '../../../interfaces/global';
+import {TextField} from '../../ui/TextField/TextField';
+import {Button} from '../../ui/Button/Button';
+import {register} from '../../../api/api';
+import {useNavigate} from "@tanstack/react-router";
+import {motion} from 'framer-motion';
+import {pageMotion} from '../../../motions/pageMotion';
+import classes from './Registration.module.scss';
 
 interface RegistrationProps {
 }
 
 export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
-    const [user, setUser] = useState<Record<string, string>>({username: "", password: ""});
+    const navigate = useNavigate({from: "/auth/registration"});
+    const [user, setUser] = useState<User>({username: "", password: ""});
     const [error, setError] = useState(false);
 
     const changeUserValueHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -21,22 +25,21 @@ export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
         }));
     };
 
-    const handleRegister = async () => {
-        const response = await fetch(`https://front-test.hex.team/api/register?username=${user.username}&password=${user.password}`, {
-            method: "POST",
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json',
+    const registerHandler = async () => {
+        try {
+            const response = await register(user);
+
+            if (!response.ok) {
+                setError(true);
+                return;
             }
-        });
 
-        if (!response.ok) {
-            setError(true);
-            return;
+            navigate({to: "/auth/login"});
+
+        } catch (error) {
+            console.error(`Произошла ошибка при регистрации: ${error}`);
         }
-
-        const data = await response.json();
-    }
+    };
 
     return (
         <motion.div
@@ -65,7 +68,7 @@ export const Registration: FC<PropsWithChildren<RegistrationProps>> = ({}) => {
             />
 
             <Button
-                onClick={handleRegister}
+                onClick={registerHandler}
                 text="Регистрация"
             />
 
